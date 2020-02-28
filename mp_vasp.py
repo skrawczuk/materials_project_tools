@@ -7,7 +7,7 @@ def timeout_handler(signum, frame):
     raise RuntimeError
 
 
-def get_vasp_files(results: pd.DataFrame, driver_path='./chromedriver'):
+def get_vasp_files(results: pd.DataFrame, download_path: str, driver_path='./chromedriver'):
     """
     Downloads zip files from materials project given query dataframe using selenium (browser automation)
 
@@ -15,6 +15,8 @@ def get_vasp_files(results: pd.DataFrame, driver_path='./chromedriver'):
     ----------
     results : data frame
         resulting data frame from a database query. Should at least contain 'material_id' column
+    download_path : str
+        path to download directory (where browser saves downloaded files)
     driver_path : str
         path to chrome driver in local directory
     Returns
@@ -51,7 +53,7 @@ def get_vasp_files(results: pd.DataFrame, driver_path='./chromedriver'):
             download_button = driver.find_elements_by_xpath("//*[contains(text(),'" + '1 file(s)' + "')]")[0]
             download_button.click()
 
-            zipfile = '/Users/schuylerkrawczuk/Downloads/material_{}_files.zip'.format(mat_id)
+            zipfile = download_path + 'material_{}_files.zip'.format(mat_id)
             zipfiles.append(zipfile)
 
         except RuntimeError:

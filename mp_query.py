@@ -32,7 +32,9 @@ def filter_n_most_stable(results_df, n):
 
 def tmo_materials(n_most_stable: int, rows: list, n_elements: int, api_key: str):
     """
-    Returns a dataframe of transition metal oxides
+    Returns a dataframe of transition metal oxides.
+    Template for creating other queries
+
     Parameters
     ----------
     n_most_stable : int
@@ -49,7 +51,6 @@ def tmo_materials(n_most_stable: int, rows: list, n_elements: int, api_key: str)
     -------
     results_df : data frame
         dataframe containing resulting entries from the database
-
     """
 
     all_elements = [i for i in mg.periodic_table.Element]
